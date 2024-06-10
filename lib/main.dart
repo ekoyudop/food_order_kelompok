@@ -8,6 +8,8 @@ import 'package:food_order_kelompok/theme/theme_provider.dart';
 import 'package:provider/provider.dart';
 import 'pages/intro_page.dart';
 import 'pages/menu_page.dart';
+import 'pages/add_menu_page.dart';
+import 'pages/all_menu.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -36,6 +38,8 @@ class MyApp extends StatelessWidget {
       routes: {
         '/intropage': (context) => const IntroPage(),
         '/menupage': (context) => const HomePage(),
+        '/addmenupage': (context) => AddMenuPage(),
+        '/allmenupage': (context) => MenuPage(),
         '/loginpage': (context) => const LoginOrRegister(),
         '/settings': (context) => const SettingsPage(),
       },

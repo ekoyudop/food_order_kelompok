@@ -38,6 +38,22 @@ class MyDrawer extends StatelessWidget {
               icon: Icons.home,
               onTap: () => Navigator.pop(context)),
 
+          MyDrawerTile(
+              text: "T A M B A H  M E N U",
+              icon: Icons.home,
+              onTap: () => {
+                    Navigator.pop(context),
+                    Navigator.pushNamed(context, '/addmenupage')
+                  }),
+
+          MyDrawerTile(
+              text: "E D I T  M E N U",
+              icon: Icons.home,
+              onTap: () => {
+                    Navigator.pop(context),
+                    Navigator.pushNamed(context, '/allmenupage')
+                  }),
+
           // settings list tile
           MyDrawerTile(
               text: "S E T T I N G S",

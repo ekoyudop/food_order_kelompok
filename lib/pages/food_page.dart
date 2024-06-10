@@ -42,7 +42,12 @@ class _FoodPageState extends State<FoodPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.asset(widget.food.imagePath),
+            Image.network(
+              widget.food.imagePath,
+              // Jika diperlukan, atur lebar dan tinggi gambar
+              // width: 200,
+              // height: 200,
+            ),
             Padding(
               padding: const EdgeInsets.all(25.0),
               child: Column(
@@ -56,7 +61,7 @@ class _FoodPageState extends State<FoodPage> {
                     ),
                   ),
                   Text(
-                    '\Rp.${widget.food.price.toStringAsFixed(3)}',
+                    '\Rp${widget.food.price.toStringAsFixed(3)}',
                     style: const TextStyle(
                       fontSize: 16,
                       color: Colors.grey,
@@ -98,7 +103,7 @@ class _FoodPageState extends State<FoodPage> {
                         return CheckboxListTile(
                           title: Text(addon.name),
                           subtitle: Text(
-                            '\Rp.${addon.price.toStringAsFixed(3)}',
+                            '\Rp${addon.price.toStringAsFixed(3)}',
                             style: TextStyle(color: Colors.grey[500]),
                           ),
                           value: widget.selectedAddons[addon],

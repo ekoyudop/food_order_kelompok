@@ -7,7 +7,7 @@ import '../models/warmindo.dart';
 
 class MyCartTile extends StatelessWidget {
   final CartItem cartItem;
-  const MyCartTile({super.key, required this.cartItem});
+  const MyCartTile({Key? key, required this.cartItem}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -28,10 +28,11 @@ class MyCartTile extends StatelessWidget {
                   // food image
                   ClipRRect(
                     borderRadius: BorderRadius.circular(8),
-                    child: Image.asset(
+                    child: Image.network(
                       cartItem.food.imagePath,
                       height: 100,
                       width: 100,
+                      fit: BoxFit.cover,
                     ),
                   ),
 
@@ -51,7 +52,7 @@ class MyCartTile extends StatelessWidget {
 
                       // food price
                       Text(
-                        '\Rp.${cartItem.food.price.toStringAsFixed(3)}',
+                        '\Rp${cartItem.food.price.toStringAsFixed(3)}',
                         style: const TextStyle(
                           color: Color.fromARGB(255, 146, 144, 144),
                         ),
@@ -63,15 +64,16 @@ class MyCartTile extends StatelessWidget {
 
                   // increment and decrement quantity
                   QuantitySelector(
-                      quantity: cartItem.quantity,
-                      food: cartItem.food,
-                      onDecrement: () {
-                        warmindo.removeFromCart(cartItem);
-                      },
-                      onIncrement: () {
-                        warmindo.addToCart(
-                            cartItem.food, cartItem.selectedAddons);
-                      }),
+                    quantity: cartItem.quantity,
+                    food: cartItem.food,
+                    onDecrement: () {
+                      warmindo.removeFromCart(cartItem);
+                    },
+                    onIncrement: () {
+                      warmindo.addToCart(
+                          cartItem.food, cartItem.selectedAddons);
+                    },
+                  ),
                 ],
               ),
             ),
@@ -99,7 +101,7 @@ class MyCartTile extends StatelessWidget {
 
                               // addon price
                               Text(
-                                ' (\Rp.${addon.price.toStringAsFixed(3)})',
+                                ' (\Rp${addon.price.toStringAsFixed(3)})',
                                 style: const TextStyle(
                                   color: Color.fromARGB(255, 47, 47, 47),
                                 ),
