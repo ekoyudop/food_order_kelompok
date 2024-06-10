@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:food_order_kelompok/models/food.dart';
-import 'package:food_order_kelompok/pages/edit_menu_page.dart';
 import 'package:food_order_kelompok/pages/food_page.dart';
+import 'package:food_order_kelompok/services/database/firestore.dart';
 
 class MenuPage extends StatelessWidget {
   final CollectionReference _menuCollection =
       FirebaseFirestore.instance.collection('menus');
+  final FirestoreService _firestoreService = FirestoreService();
 
   @override
   Widget build(BuildContext context) {
@@ -58,11 +59,35 @@ class MenuPage extends StatelessWidget {
                 ),
                 title: Text(food.name),
                 subtitle: Text(food.description),
-                trailing: Text('\Rp${food.price.toStringAsFixed(3)}'),
+                trailing: PopupMenuButton<String>(
+                  itemBuilder: (context) => [
+                    PopupMenuItem(
+                      value: 'edit',
+                      child: ListTile(
+                        leading: Icon(Icons.edit),
+                        title: Text('Edit'),
+                      ),
+                    ),
+                    PopupMenuItem(
+                      value: 'delete',
+                      child: ListTile(
+                        leading: Icon(Icons.delete),
+                        title: Text('Delete'),
+                      ),
+                    ),
+                  ],
+                  onSelected: (String value) {
+                    if (value == 'edit') {
+                      _editFood(context, food);
+                    } else if (value == 'delete') {
+                      _confirmDelete(context, document.id);
+                    }
+                  },
+                ),
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => EditMenuPage(),
+                    builder: (context) => FoodPage(food: food),
                   ),
                 ),
               );
@@ -71,5 +96,38 @@ class MenuPage extends StatelessWidget {
         },
       ),
     );
+  }
+
+  void _editFood(BuildContext context, Food food) {
+    // Implementasi logika untuk mengedit item makanan
+  }
+
+  void _confirmDelete(BuildContext context, String menuId) {
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Delete Confirmation'),
+          content: Text('Are you sure you want to delete this menu?'),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.of(context).pop(), // Close dialog
+              child: Text('Cancel'),
+            ),
+            TextButton(
+              onPressed: () {
+                _deleteFood(context, menuId); // Call delete function
+                Navigator.of(context).pop(); // Close dialog
+              },
+              child: Text('Delete'),
+            ),
+          ],
+        );
+      },
+    );
+  }
+
+  void _deleteFood(BuildContext context, String menuId) {
+    _firestoreService.deleteMenuFromDatabase(menuId);
   }
 }

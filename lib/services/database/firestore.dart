@@ -29,4 +29,8 @@ class FirestoreService {
           .toList(),
     });
   }
+
+  Future<void> deleteMenuFromDatabase(String menuId) async {
+    await menus.doc(menuId).delete();
+  }
 }
