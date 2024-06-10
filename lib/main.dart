@@ -9,6 +9,8 @@ import 'package:provider/provider.dart';
 import 'pages/intro_page.dart';
 import 'pages/menu_page.dart';
 import 'pages/add_menu_page.dart';
+import 'pages/edit_menu_page.dart';
+import 'pages/all_menu.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -38,6 +40,8 @@ class MyApp extends StatelessWidget {
         '/intropage': (context) => const IntroPage(),
         '/menupage': (context) => const HomePage(),
         '/addmenupage': (context) => AddMenuPage(),
+        '/allmenupage': (context) => MenuPage(),
+        '/editmenupage': (context) => EditMenuPage(),
         '/loginpage': (context) => const LoginOrRegister(),
         '/settings': (context) => const SettingsPage(),
       },
