@@ -42,7 +42,12 @@ class _FoodPageState extends State<FoodPage> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            Image.asset(widget.food.imagePath),
+            Image.network(
+              widget.food.imagePath,
+              // Jika diperlukan, atur lebar dan tinggi gambar
+              // width: 200,
+              // height: 200,
+            ),
             Padding(
               padding: const EdgeInsets.all(25.0),
               child: Column(
