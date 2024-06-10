@@ -10,7 +10,7 @@ Untuk menjalankan aplikasi ini di mesin lokal Anda, ikuti langkah-langkah beriku
 3. flutter run
 
 **Kontributor**
-Akmal Fikri Muhammad Pasaribu (21102309)
-Eko Yudo Prayitno (21102111)
-Feriardus Orlan Banggur (21102077)
-Izaz Rakha Anggara (21102096)
+- Akmal Fikri Muhammad Pasaribu (21102309)
+- Eko Yudo Prayitno (21102111)
+- Feriardus Orlan Banggur (21102077)
+- Izaz Rakha Anggara (21102096)
