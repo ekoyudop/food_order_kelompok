@@ -3,6 +3,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:food_order_kelompok/models/food.dart';
 import 'package:food_order_kelompok/pages/food_page.dart';
 import 'package:food_order_kelompok/services/database/firestore.dart';
+import 'package:food_order_kelompok/pages/edit_food_page.dart';
 
 class MenuPage extends StatelessWidget {
   final CollectionReference _menuCollection =
@@ -31,8 +32,7 @@ class MenuPage extends StatelessWidget {
           return ListView.builder(
             itemCount: snapshot.data!.docs.length,
             itemBuilder: (context, index) {
-              final DocumentSnapshot<Object?> document =
-                  snapshot.data!.docs[index];
+              final DocumentSnapshot document = snapshot.data!.docs[index];
               final Food food = Food(
                 name: document['name'],
                 description: document['description'],
@@ -78,7 +78,7 @@ class MenuPage extends StatelessWidget {
                   ],
                   onSelected: (String value) {
                     if (value == 'edit') {
-                      _editFood(context, food);
+                      _editFood(context, food, document.id);
                     } else if (value == 'delete') {
                       _confirmDelete(context, document.id);
                     }
@@ -98,8 +98,15 @@ class MenuPage extends StatelessWidget {
     );
   }
 
-  void _editFood(BuildContext context, Food food) {
-    // Implementasi logika untuk mengedit item makanan
+  void _editFood(BuildContext context, Food food, String menuId) {
+    // Navigasi ke halaman edit makanan sambil melewatkan data makanan yang akan diedit
+    Navigator.push(
+      context,
+      MaterialPageRoute(
+        builder: (context) =>
+            EditFoodPage(food: food, menuId: menuId), // Passing menuId
+      ),
+    );
   }
 
   void _confirmDelete(BuildContext context, String menuId) {

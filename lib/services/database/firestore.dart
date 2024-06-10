@@ -33,4 +33,20 @@ class FirestoreService {
   Future<void> deleteMenuFromDatabase(String menuId) async {
     await menus.doc(menuId).delete();
   }
+
+  Future<void> updateFoodInDatabase(String menuId, Food food) async {
+    await menus.doc(menuId).update({
+      'name': food.name,
+      'description': food.description,
+      'price': food.price,
+      'imagePath': food.imagePath,
+      'category': food.category.toString(),
+      'addons': food.availableAddons
+          .map((addon) => {
+                'name': addon.name,
+                'price': addon.price,
+              })
+          .toList(),
+    });
+  }
 }
