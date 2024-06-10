@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:food_order_kelompok/components/my_button.dart';
 import 'package:food_order_kelompok/components/my_textfield.dart';
-import 'package:food_order_kelompok/services/auth/auth_service.dart';
+
+import '../services/auth/auth_service.dart';
 
 class LoginPage extends StatefulWidget {
   final void Function()? onTap;
@@ -19,35 +20,57 @@ class _LoginPageState extends State<LoginPage> {
   final TextEditingController passwordControler = TextEditingController();
 
   // login function
-  void Login() async {
-    // fill authentication logic
+  void login() async {
+    // Mengisi logika otentikasi
     final _authService = AuthService();
 
     try {
       await _authService.signInWithEmailPassword(
-        emailControler.text,
-        passwordControler.text,
-      );
-    } catch (e) {
+          emailControler.text, passwordControler.text);
+
+      // Menampilkan pesan jika login berhasil
       showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: Text(e.toString()),
+          title: Text("Login Successful"),
+          content: Text("Welcome back! You have successfully logged in."),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text("OK"),
+            ),
+          ],
+        ),
+      );
+      Navigator.pushNamed(context, '/menupage');
+    } catch (e) {
+      // Menampilkan pesan jika login gagal
+      showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          title: Text("Login Failed"),
+          content: Column(
+            mainAxisSize: MainAxisSize.min,
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                  "Email or password is incorrect. Please check your credentials and try again."),
+              SizedBox(height: 10),
+            ],
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: Text("OK"),
+            ),
+          ],
         ),
       );
     }
-    // navigate to menu page
-    Navigator.pushNamed(context, '/menupage');
-  }
-
-  void forgotPw() {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        backgroundColor: Theme.of(context).colorScheme.background,
-        title: const Text("User tapped forgot password."),
-      ),
-    );
   }
 
   @override
@@ -92,7 +115,7 @@ class _LoginPageState extends State<LoginPage> {
             const SizedBox(height: 25),
 
             // login button
-            MyButton(text: "Sign In", onTap: Login),
+            MyButton(text: "Sign In", onTap: login),
 
             const SizedBox(height: 25),
 
