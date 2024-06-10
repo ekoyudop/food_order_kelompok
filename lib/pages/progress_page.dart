@@ -1,14 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:food_order_kelompok/components/my_receipt.dart';
+import 'package:food_order_kelompok/services/database/firestore.dart';
+import 'package:provider/provider.dart';
 
-class ProgressPage extends StatelessWidget {
+import '../models/warmindo.dart';
+
+class ProgressPage extends StatefulWidget {
   const ProgressPage({super.key});
+
+  @override
+  State<ProgressPage> createState() => _ProgressPageState();
+}
+
+class _ProgressPageState extends State<ProgressPage> {
+  FirestoreService db = FirestoreService();
+
+  @override
+  void initState() {
+    super.initState();
+
+    // if get to this page, submit order to firestore db
+    String receipt = context.read<Warmindo>().displayCartReceipt();
+    db.saveOrderToDatabase(receipt);
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Order in Progress.."),
         centerTitle: true,
         backgroundColor: Colors.transparent,
       ),
