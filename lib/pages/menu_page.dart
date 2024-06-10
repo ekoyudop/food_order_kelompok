@@ -145,7 +145,7 @@ class MyFoodTile extends StatelessWidget {
       ),
       title: Text(food.name),
       subtitle: Text(food.description),
-      trailing: Text('\Rp${food.price.toStringAsFixed(2)}'),
+      trailing: Text('\Rp${food.price.toStringAsFixed(3)}'),
       onTap: onTap,
     );
   }

@@ -52,7 +52,7 @@ class MyCartTile extends StatelessWidget {
 
                       // food price
                       Text(
-                        '\Rp.${cartItem.food.price.toStringAsFixed(3)}',
+                        '\Rp${cartItem.food.price.toStringAsFixed(3)}',
                         style: const TextStyle(
                           color: Color.fromARGB(255, 146, 144, 144),
                         ),
@@ -101,7 +101,7 @@ class MyCartTile extends StatelessWidget {
 
                               // addon price
                               Text(
-                                ' (\Rp.${addon.price.toStringAsFixed(3)})',
+                                ' (\Rp${addon.price.toStringAsFixed(3)})',
                                 style: const TextStyle(
                                   color: Color.fromARGB(255, 47, 47, 47),
                                 ),

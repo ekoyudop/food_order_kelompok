@@ -124,7 +124,7 @@ class _AddMenuPageState extends State<AddMenuPage> {
                 return ListTile(
                   title: Text(_addons[index].name),
                   subtitle:
-                      Text('\Rp${_addons[index].price.toStringAsFixed(2)}'),
+                      Text('\Rp${_addons[index].price.toStringAsFixed(3)}'),
                   trailing: IconButton(
                     icon: Icon(Icons.remove),
                     onPressed: () => _removeAddon(index),

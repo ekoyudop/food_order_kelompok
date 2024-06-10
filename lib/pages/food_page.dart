@@ -61,7 +61,7 @@ class _FoodPageState extends State<FoodPage> {
                     ),
                   ),
                   Text(
-                    '\Rp.${widget.food.price.toStringAsFixed(3)}',
+                    '\Rp${widget.food.price.toStringAsFixed(3)}',
                     style: const TextStyle(
                       fontSize: 16,
                       color: Colors.grey,
@@ -103,7 +103,7 @@ class _FoodPageState extends State<FoodPage> {
                         return CheckboxListTile(
                           title: Text(addon.name),
                           subtitle: Text(
-                            '\Rp.${addon.price.toStringAsFixed(3)}',
+                            '\Rp${addon.price.toStringAsFixed(3)}',
                             style: TextStyle(color: Colors.grey[500]),
                           ),
                           value: widget.selectedAddons[addon],
