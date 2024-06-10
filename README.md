@@ -1,16 +1,16 @@
-# food_order_kelompok
+**Aplikasi Pemesanan Makanan**
 
-A new Flutter project.
+**Pendahuluan**
+Selamat datang di Aplikasi Pemesanan Makanan! Aplikasi berbasis Flutter ini memungkinkan pengguna untuk menjelajahi berbagai pilihan makanan, melakukan pemesanan, dan melakukan pembayaran dengan mudah. Aplikasi ini dirancang untuk memberikan pengalaman pengguna yang ramah dengan antarmuka yang modern dan intuitif.
 
-## Getting Started
+**Instalasi**
+Untuk menjalankan aplikasi ini di mesin lokal Anda, ikuti langkah-langkah berikut:
+1. Clone repositori: git clone https://github.com/ekoyudop/food_order_kelompok.git
+2. cd food_order_kelompok
+3. flutter run
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+**Kontributor**
+Akmal Fikri Muhammad Pasaribu (21102309)
+Eko Yudo Prayitno (21102111)
+Feriardus Orlan Banggur (21102077)
+Izaz Rakha Anggara (21102096)
